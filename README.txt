@@ -1,6 +1,6 @@
 This file is part of GPCCA.
 
-Copyright (c) 2018, 2017 Bernhard Reuter and Marcus Weber
+Copyright (c) 2018, 2017 Bernhard Reuter
 
 If you use this code or parts of it, cite the following reference:
 
