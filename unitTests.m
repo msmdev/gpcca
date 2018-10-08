@@ -5,10 +5,10 @@ function tests = unitTests
 %
 % If you use this code or parts of it, cite the following reference:
 %
-% Reuter, B., Weber, M., Fackeldey, K., Röblitz, S., & Garcia, M. E. (2018). Generalized
+% Reuter, B., Weber, M., Fackeldey, K., R??blitz, S., & Garcia, M. E. (2018). Generalized
 % Markov State Modeling Method for Nonequilibrium Biomolecular Dynamics: Exemplified on
-% Amyloid β Conformational Dynamics Driven by an Oscillating Electric Field. Journal of
-% Chemical Theory and Computation, 14(7), 3579–3594. https://doi.org/10.1021/acs.jctc.8b00079
+% Amyloid ?? Conformational Dynamics Driven by an Oscillating Electric Field. Journal of
+% Chemical Theory and Computation, 14(7), 3579???3594. https://doi.org/10.1021/acs.jctc.8b00079
 %
 % GPCCA is free software: you can redistribute it and/or modify
 % it under the terms of the GNU Lesser General Public License as published
@@ -3987,10 +3987,10 @@ function setupOnce(testCase)
     cd(testCase.TestData.tmpFolder)
 %       factor abstolfac to multiply eps with for use as absolute tolerance 
 %       abstol=abstolfac*eps in many (not all) comparisons 
-    testCase.TestData.abstolfac = 100 ;
+    testCase.TestData.abstolfac = 1e8 ;
 %       factor reltolfac to multiply eps with for use as relative tolerance 
 %       reltol=reltolfac*eps in many (not all) comparisons 
-    testCase.TestData.reltolfac = 100 ;
+    testCase.TestData.reltolfac = 1e8 ;
 %       global variable to define precision to use
     global class_t ;
 %       set precision of variables or expressions wrapped by numeric_t(),
