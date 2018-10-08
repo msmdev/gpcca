@@ -82,3 +82,4 @@ the Matlab standard.
 
 Also for the overall program the precision can and must be determined. This happens in the 
 main.m script and is by default set to 'double' there.
+WARNING: Don't set a precision bellow 'double'!!! NEVER use single precision!!!
