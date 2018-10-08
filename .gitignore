@@ -1,1 +1,5 @@
 .DS_Store
+regressionTestsFolder_double/
+regressionTestsFolder_mp/
+unitTestsFolder_double/
+unitTestsFolder_mp/
