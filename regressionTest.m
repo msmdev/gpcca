@@ -5,10 +5,10 @@ function tests = regressionTest
 %
 % If you use this code or parts of it, cite the following reference:
 %
-% Reuter, B., Weber, M., Fackeldey, K., R??blitz, S., & Garcia, M. E. (2018). Generalized
+% Reuter, B., Weber, M., Fackeldey, K., R?blitz, S., & Garcia, M. E. (2018). Generalized
 % Markov State Modeling Method for Nonequilibrium Biomolecular Dynamics: Exemplified on
-% Amyloid ?? Conformational Dynamics Driven by an Oscillating Electric Field. Journal of
-% Chemical Theory and Computation, 14(7), 3579???3594. https://doi.org/10.1021/acs.jctc.8b00079
+% Amyloid beta Conformational Dynamics Driven by an Oscillating Electric Field. Journal of
+% Chemical Theory and Computation, 14(7), 3579-3594. https://doi.org/10.1021/acs.jctc.8b00079
 %
 % GPCCA is free software: you can redistribute it and/or modify
 % it under the terms of the GNU Lesser General Public License as published
