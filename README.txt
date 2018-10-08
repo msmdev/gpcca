@@ -1,6 +1,7 @@
 This file is part of GPCCA.
 
 Copyright (c) 2018, 2017 Bernhard Reuter
+with contributions of Marcus Weber and Susanna Röblitz
 
 If you use this code or parts of it, cite the following reference:
 
@@ -28,6 +29,10 @@ Bernhard Reuter
 bernhard-reuter@gmx.de
 
 or fill a pull request.
+------------------------------------------------------------------------------------------
+
+Download the code at: https://github.com/msmdev/gpcca
+
 ------------------------------------------------------------------------------------------
 How to use GPCCA:
 
