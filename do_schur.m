@@ -74,13 +74,17 @@ function [ X, RR ]  = do_schur( P, sd, fileid, b )
         'P matrix isnt quadratic!' )
     assert( size(sd,1)==size(P,1), 'do_schur:MatrixShapeError2', ...
         'sd vector length doesnt match with the shape of P!' )
-    assert(all(sum(P,2) > num_t('0.0')),'do_schur:ZeroError1', ...
-        'Not all rows of P are >0!')
-    assert(all(sd > num_t('0.0')),'do_schur:ZeroError2', ...
-        'Not all elements of sd are >0!')
+%    assert(all(sum(P,2) > num_t('0.0')),'do_schur:ZeroError1', ...
+%        'Not all rows of P are >0!')
+%    assert(all(sd > num_t('0.0')),'do_schur:ZeroError2', ...
+%        'Not all elements of sd are >0!')
     
 %       weight the stochastic matrix P_stoch by the initial distribution sd
-    Pd=diag(sqrt(sd))*P*diag(num_t('1.0')./sqrt(sd)) ;
+    ind = find(sd > mp('0.1')) ;
+    diagonal = zeros(3,1,num_t) ;
+    diagonal(ind) = num_t('1.0')./sqrt(sd(ind)) ;
+    D_inv = diag(diagonal) ;
+    Pd=diag(sqrt(sd))*P*D_inv ;
     assert(isa(Pd,num_t),'do_schur:Pd_DataTypeError', ...
         'Variable is type %s not %s', class(Pd),num_t)
     name=strcat(fileid,'-','Pd','.txt') ;
@@ -137,7 +141,7 @@ function [ X, RR ]  = do_schur( P, sd, fileid, b )
 
 %       transform the orthonormalized Schur vectors of Pd back
 %       -> orthonormalized Schur vectors X of P_stoch
-    X=diag(num_t('1.0')./sqrt(sd))*QQ_orthonorm ;
+    X=D_inv*QQ_orthonorm ;
     assert( size(X,1)==N, 'do_schur:MatrixShapeError4', ...
         'The shape (%d,%d) of X doesnt match with the shape (%d,%d) of P!', ...
         size(X,1), size(X,2), N, N)
