@@ -23,20 +23,21 @@ function Q = gram_schmidt_mod(EVS,sd)
 % You should have received a copy of the GNU Lesser General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 % -------------------------------------------------------------------------
-% function to sd-orthonormalize vectors - modified numerically stable version
+% function to orthonormalize vectors - modified numerically stable version
     %
     % Q = gram_schmidt_mod( EVS, sd )
     %
     % Input:
-    %   EVS     (N,N)-matrix with eigen- or Schur-vectors 
+    %   EVS     (N,N)-matrix with eigen-/Schurvectors of 
+    %           Pd=diag(sqrt(sd))*P*diag(1.0./sqrt(sd))
     %   sd      "initial distribution"
     %
     % Output:
-    %   Q       (N,N)-matrix with sd-orthonormalized eigen- or Schur-
-    %           vectors
+    %   Q       (N,N)-matrix with orthonormalized eigen-/Schur-
+    %           vectors of Pd and sqrt(sd) on the first column
     %
     % Written by Bernhard Reuter, Theoretical Physics II,
-    % University of Kassel, 2017
+    % University of Kassel, 2017,2018,2019
 %   -----------------------------------------------------------------------
     class_t1 = class(EVS);
     class_t2 = class(sd) ;
@@ -73,9 +74,29 @@ function Q = gram_schmidt_mod(EVS,sd)
     Q = num_t(zeros(m,n)) ;
 
     R = num_t(zeros(n,n)) ;
+    
+%       search for the constant eigen-/Schurvector, if explicitly present
+    max_vsum = 0.0 ;
+    for i = 1:n
+        vsum = sum(EVS(:,i)) ;
+        if ( abs(vsum) > max_vsum )
+            max_vsum = abs(vsum) ;
+            max_i = i ;
+        end
+    end
 
+%       keep copy of the original eigen-/Schurvectors for later sanity check
+    cEVS = EVS
+
+%       shift non-constant first eigen-/Schurvector to the right
+    EVS(:,max_i) = EVS(:,1) ;
+%       set first eigen-/Schurvector equal sqrt(sd) 
+%       (in do_schur.m the Q-matrix, orthogonalized by gram_schmidt_mod.m,
+%       will be multiplied with 1.0./sqrt(sd) - so the first eigen-/Schur-
+%       vector will become the unit vector 1!
     EVS(:,1) = num_t(sqrt(sd)) ;
 
+%       sd-orthogonalize
     for j=1:n
         v = EVS(:,j) ;
         for i=1:j-1
@@ -85,4 +106,9 @@ function Q = gram_schmidt_mod(EVS,sd)
         R(j,j) = num_t(norm(v)) ;
         Q(:,j) = v / R(j,j) ;
     end
+
+%       assert that the subspace didn't change!
+    assert(subspace(EVS,cEVS) < (num_t('10000')*eps(num_t)),'gram_schmidt_mod:SubspaceError', ...
+        'The derived subspace doesnt match the original one!') ;
+
 end
