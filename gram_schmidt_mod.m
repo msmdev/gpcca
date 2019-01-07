@@ -76,7 +76,7 @@ function Q = gram_schmidt_mod(EVS,sd)
     R = num_t(zeros(n,n)) ;
     
 %       search for the constant eigen-/Schurvector, if explicitly present
-    max_vsum = 0.0 ;
+    max_vsum = num_t(0.0) ;
     for i = 1:n
         vsum = sum(EVS(:,i)) ;
         if ( abs(vsum) > max_vsum )
