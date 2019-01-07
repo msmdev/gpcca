@@ -76,17 +76,18 @@ function Q = gram_schmidt_mod(EVS,sd)
     R = num_t(zeros(n,n)) ;
     
 %       search for the constant eigen-/Schurvector, if explicitly present
-    max_vsum = num_t(0.0) ;
+    max_i = 1 ;
     for i = 1:n
         vsum = sum(EVS(:,i)) ;
-        if ( abs(vsum) > max_vsum )
-            max_vsum = abs(vsum) ;
+        dummy = abs(EVS(:,i) - ( ones(size(EVS(:,i))) * (vsum/m) )) ;
+        dummy1 = ( dummy < ( num_t('1000000') * eps(num_t) ) ) ;
+        if all(dummy1(:))  
             max_i = i ;
         end
     end
 
 %       keep copy of the original eigen-/Schurvectors for later sanity check
-    cEVS = EVS
+    cEVS = EVS ;
 
 %       shift non-constant first eigen-/Schurvector to the right
     EVS(:,max_i) = EVS(:,1) ;
@@ -94,7 +95,11 @@ function Q = gram_schmidt_mod(EVS,sd)
 %       (in do_schur.m the Q-matrix, orthogonalized by gram_schmidt_mod.m,
 %       will be multiplied with 1.0./sqrt(sd) - so the first eigen-/Schur-
 %       vector will become the unit vector 1!
-    EVS(:,1) = num_t(sqrt(sd)) ;
+    EVS(:,1) = sqrt(sd) ;
+%       assert that the subspace didn't change!
+    assert(subspace(EVS,cEVS) < (num_t('1000000')*eps(num_t)), ...
+        'gram_schmidt_mod:SubspaceError1', ...
+        'The derived subspace doesnt match the original one!') ;
 
 %       sd-orthogonalize
     for j=1:n
@@ -103,12 +108,13 @@ function Q = gram_schmidt_mod(EVS,sd)
             R(i,j) = Q(:,i)' * v ;
             v = v - R(i,j) * Q(:,i) ;
         end
-        R(j,j) = num_t(norm(v)) ;
+        R(j,j) = norm(v) ;
         Q(:,j) = v / R(j,j) ;
     end
 
 %       assert that the subspace didn't change!
-    assert(subspace(EVS,cEVS) < (num_t('10000')*eps(num_t)),'gram_schmidt_mod:SubspaceError', ...
+    assert(subspace(Q,cEVS) < (num_t('1000000')*eps(num_t)), ...
+        'gram_schmidt_mod:SubspaceError2', ...
         'The derived subspace doesnt match the original one!') ;
 
 end
