@@ -1,7 +1,7 @@
 function Q = gram_schmidt_mod(EVS,sd)
 % This file is part of GPCCA.
 %
-% Copyright (c) 2018, 2017 Bernhard Reuter
+% Copyright (c) 2019, 2018, 2017 Bernhard Reuter
 %
 % If you use this code or parts of it, cite the following reference:
 %
