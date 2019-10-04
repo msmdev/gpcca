@@ -430,10 +430,10 @@ function [x,info,wk] = nlscon(m,fcn,x,xscal,fi,fscal,rtol,iopt,par,wk,info)
 %                          DELX := AJDEL*max(abs(Xk),AJMIN)
 %         etadif  IN     Jacobian approximation with feedback:
 %                        Target value for relative pertubation ETA of X
-%                        (Default: 1.0d-6)
+%                        (Default: 1.0e-6)
 %         etaini  IN     Jacobian approximation with feedback:
 %                        Initial value for denominator differences
-%                        (Default: 1.0d-6)
+%                        (Default: 1.0e-6)
 %         prec    OUT    An estimate for the achieved relative accuracy.
 %                        This number is only available, if IERR=0 or 
 %                        IERR=1 and an estimate for the incompatibility
@@ -799,7 +799,7 @@ function [x,info,wk] = nlscon(m,fcn,x,xscal,fi,fscal,rtol,iopt,par,wk,info)
       if  ~ qfcstr
         wk.fcstart=1.0e-2 ;
         if nonlin == 4
-          wk.fcstart=1.0d-4 ;
+          wk.fcstart=1.0e-4 ;
         end
       end
 %     Minimal permitted damping factor
@@ -4108,7 +4108,7 @@ function dmach = d1mach(i)
         dmach = log10(2.0) ;
       elseif i  ==  6
 %       dmach = sqrt(dmach(1)/dmach(3)) ;
-        dmach = 4.94d-32 ;
+        dmach = 4.94e-32 ;
       end
 
 function [optval,opt] = getopt(opt,field,default)
