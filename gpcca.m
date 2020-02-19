@@ -43,6 +43,10 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
 % 			if b > 0 then  b or b+1 eigenvalues will be sorted, 
 %			depending on the sizes of the blocks,
 % 			if b = 0 then the whole Schur form will be sorted.
+%			WARNING: The number of sorted eigenvalues needs to 
+%			be larger than the maximal number of clusters!
+%			WARNING: If you choose b < 0 you should REALLY
+%			know what you are doing!
 %       wk.display      If 1, iterative output of the optimization progress
 %                       shown. CAUTION: this slows the process
 %                       significantly down.
@@ -170,6 +174,13 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
     assert(mod(kmax,1) == 0, 'gpcca:k_InputError', ...
         'kmax is not an integer value') ;
     assert(kmax >= kmin, 'gpcca:k_InputError', 'kmax !>= kmin') ;
+%	make sure that one isnt messing with wk.b
+    if (wk.b >= 0)
+	assert(wk.b >= kmax, 'gpcca:k_InputError', ['wk.b !>= kmax: The ', ...
+		'number of sorted eigenvalues needs to be larger ', ...
+		'than the maximal number of clusters!']) ;
+    else
+	disp('You chose wk.b < 0: You should REALLY know what you are doing!')
 %--------------------------------------------------------------------------
     class_t1 = class(P) ;
     class_t2 = class(sd) ;
