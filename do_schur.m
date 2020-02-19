@@ -110,6 +110,17 @@ function [ X, RR ]  = do_schur( P, sd, fileid, b )
     save_t(name,QQ,'-ascii')
     name=strcat(fileid,'-','RR','.txt') ;
     save_t(name,RR,'-ascii')
+    
+%       if b isn't =0, the Schurmatrix and Schurvectors are only partially
+%       sorted, therefore one doesn't need the whole Schurvector matrix
+    if b ~= 0
+%           mind that b can be <0!
+        absB = abs(b) ;
+%           take only the Schurvectors belonging to the sorted part of the
+%           Schurmatrix 
+        QQ = QQ(:,1:absB) ;
+        RR = RR(1:absB,1:absB) ;
+    end
 
 %       orthonormalize the sorted Schur vectors QQ
 %       by modified Gram-Schmidt-Orthonormalization
