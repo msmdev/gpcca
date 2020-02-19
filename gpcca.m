@@ -36,6 +36,13 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
 %   wk                  (possibly empty) structure with the following 
 %                       fields,
 %                       that are initialized here, if they arent passed.
+%	wk.b		Serves to tell SRSchur_num_t.m how many eigenvalues
+%			or blocks (and Schurvectors) of the Schurmatrix 
+%			(and the Schurvector matrix) shall be sorted:              
+% 			If b < 0 then -b blocks will be sorted,
+% 			if b > 0 then  b or b+1 eigenvalues will be sorted, 
+%			depending on the sizes of the blocks,
+% 			if b = 0 then the whole Schur form will be sorted.
 %       wk.display      If 1, iterative output of the optimization progress
 %                       shown. CAUTION: this slows the process
 %                       significantly down.
