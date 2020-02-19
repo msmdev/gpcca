@@ -160,7 +160,7 @@ function test_do_schur_b_pos(testCase) % l3a
     N = 9 ; 
     verifyTrue(testCase,all(size(P)==[N,N]))
     verifyTrue(testCase,all(size(X)==[N,3]))
-    verifyTrue(testCase,all(size(RR)==[3,3]))
+    verifyTrue(testCase,all(size(RR)==[N,N]))
 %       test, if P*X=X*RR (Schur decomposition)
     dummy = ( abs(X*RR - P*X) < (testCase.TestData.abstolfac * eps(numeric_t)) ) ;
     verifyTrue(testCase,all(dummy(:)))
@@ -180,7 +180,7 @@ function test_do_schur_b_neg(testCase) % l3b
     N = 9 ; 
     verifyTrue(testCase,all(size(P)==[N,N]))
     verifyTrue(testCase,all(size(X)==[N,3]))
-    verifyTrue(testCase,all(size(RR)==[3,3]))
+    verifyTrue(testCase,all(size(RR)==[N,N]))
 %       test, if P*X=X*RR (Schur decomposition)
     dummy = ( abs(X*RR - P*X) < (testCase.TestData.abstolfac * eps(numeric_t)) ) ;
     verifyTrue(testCase,all(dummy(:)))
