@@ -1,7 +1,7 @@
 function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
 % This file is part of GPCCA.
 %
-% Copyright (c) 2018, 2017 Bernhard Reuter
+% Copyright (c) 2020, 2018, 2017 Bernhard Reuter
 %
 % If you use this code or parts of it, cite the following reference:
 %
@@ -163,6 +163,7 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
 % based on algorithms and code from Susanna Roeblitz and Marcus Weber, 
 % Zuse Institute Berlin, 2012
 %--------------------------------------------------------------------------
+
 %       make sure P, sd, kmin, kmax arent empty
     assert(~isempty(P),'gpcca:EmptyInput','Variable P is empty') ;
     assert(~isempty(sd),'gpcca:EmptyInput','Variable sd is empty') ;
