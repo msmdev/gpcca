@@ -119,7 +119,6 @@ function [ X, RR ]  = do_schur( P, sd, fileid, b )
 %           take only the Schurvectors belonging to the sorted part of the
 %           Schurmatrix 
         QQ = QQ(:,1:absB) ;
-        RR = RR(1:absB,1:absB) ;
     end
 
 %       orthonormalize the sorted Schur vectors QQ

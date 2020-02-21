@@ -160,9 +160,9 @@ function test_do_schur_b_pos(testCase) % l3a
     N = 9 ; 
     verifyTrue(testCase,all(size(P)==[N,N]))
     verifyTrue(testCase,all(size(X)==[N,3]))
-    verifyTrue(testCase,all(size(RR)==[3,3]))
+    verifyTrue(testCase,all(size(RR)==[N,N]))
 %       test, if P*X=X*RR (Schur decomposition)
-    dummy = ( abs(X*RR - P*X) < (testCase.TestData.abstolfac * eps(numeric_t)) ) ;
+    dummy = ( abs(X*RR(1:3,1:3) - P*X) < (testCase.TestData.abstolfac * eps(numeric_t)) ) ;
     verifyTrue(testCase,all(dummy(:)))
 %       test, if the first column of X is 1
     dummy = (abs(X(:,1) - 1) < (testCase.TestData.abstolfac * eps(numeric_t))) ;
@@ -180,9 +180,9 @@ function test_do_schur_b_neg(testCase) % l3b
     N = 9 ; 
     verifyTrue(testCase,all(size(P)==[N,N]))
     verifyTrue(testCase,all(size(X)==[N,3]))
-    verifyTrue(testCase,all(size(RR)==[3,3]))
+    verifyTrue(testCase,all(size(RR)==[N,N]))
 %       test, if P*X=X*RR (Schur decomposition)
-    dummy = ( abs(X*RR - P*X) < (testCase.TestData.abstolfac * eps(numeric_t)) ) ;
+    dummy = ( abs(X*RR(1:3,1:3) - P*X) < (testCase.TestData.abstolfac * eps(numeric_t)) ) ;
     verifyTrue(testCase,all(dummy(:)))
 %       test, if the first column of X is 1
     dummy = (abs(X(:,1) - 1) < (testCase.TestData.abstolfac * eps(numeric_t))) ;
@@ -579,10 +579,10 @@ function test_gram_schmidt_mod_R2_double(testCase) % l1b
     x2 = numeric_t('[ 2, 2 ]') ;
     sys = [ x1; x2 ] ;
     sys = sys' ;
-    sd = (x1.^2)/norm(x1) ;
+    sd = numeric_t('[ 0.5, 0.5 ]') ;
     Q = gram_schmidt_mod( sys, sd ) ;
-    u1 = numeric_t('[ 3/sqrt(10), 1/sqrt(10) ]') ;
-    u2 = numeric_t('[ -1/sqrt(10), 3/sqrt(10) ]') ;
+    u1 = numeric_t('[ sqrt(0.5), sqrt(0.5) ]') ;
+    u2 = numeric_t('[ sqrt(0.5), -sqrt(0.5) ]') ;
     orthosys = [ u1; u2 ] ;
     orthosys = orthosys' ;
     testCase.verifyThat(Q, IsEqualTo(orthosys, ...
@@ -597,7 +597,7 @@ function test_gram_schmidt_mod_R4(testCase) % l1
     x3 = numeric_t('[ 4, -2, 2, 0 ]') ;
     sys = [ x1; x2; x3 ] ;
     sys = sys' ;
-    sd = (x1.^2)/norm(x1) ;
+    sd = numeric_t('[ 0.25, 0.25, 0.25, 0.25 ]') ;
     Q = gram_schmidt_mod( sys, sd ) ;
     u1 = numeric_t('[ 1/2, 1/2, 1/2, 1/2 ]') ;
     u2 = numeric_t('[ -1/sqrt(2), sqrt(2)/3, sqrt(2)/3, -1/(3*sqrt(2)) ]') ;
