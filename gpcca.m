@@ -176,7 +176,7 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
         'kmax is not an integer value') ;
     assert(kmax >= kmin, 'gpcca:k_InputError', 'kmax !>= kmin') ;
 %	make sure that one isnt messing with wk.b
-    if (wk.b >= 0)
+    if (wk.b > 0)
 	assert(wk.b >= kmax, 'gpcca:k_InputError', ['wk.b !>= kmax: The ', ...
 		'number of sorted eigenvalues needs to be larger ', ...
 		'than the maximal number of clusters!']) ;
