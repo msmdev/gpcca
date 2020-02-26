@@ -177,11 +177,13 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
     assert(kmax >= kmin, 'gpcca:k_InputError', 'kmax !>= kmin') ;
 %	make sure that one isnt messing with wk.b
     if (wk.b > 0)
-	assert(wk.b >= kmax, 'gpcca:k_InputError', ['wk.b !>= kmax: The ', ...
-		'number of sorted eigenvalues needs to be larger ', ...
-		'than the maximal number of clusters!']) ;
+        assert(wk.b >= kmax, 'gpcca:k_InputError', ['wk.b !>= kmax: ', ...
+            'The number of sorted eigenvalues needs to be larger ', ...
+            'than the maximal number of clusters!']) ;
     else
-	disp('You chose wk.b < 0: You should REALLY know what you are doing!')
+        disp(['You chose wk.b < 0: You should REALLY know what you ', ...
+            'are doing!'])
+    end
 %--------------------------------------------------------------------------
     class_t1 = class(P) ;
     class_t2 = class(sd) ;
