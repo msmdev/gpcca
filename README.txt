@@ -1,6 +1,6 @@
 This file is part of GPCCA.
 
-Copyright (c) 2018, 2017 Bernhard Reuter
+Copyright (c) 2020, 2019, 2018, 2017 Bernhard Reuter
 with contributions of Marcus Weber and Susanna Röblitz
 
 If you use this code or parts of it, cite the following reference:
@@ -32,6 +32,19 @@ or fill a pull request.
 ------------------------------------------------------------------------------------------
 
 Download the code at: https://github.com/msmdev/gpcca
+
+------------------------------------------------------------------------------------------
+
+Please consider using the further developed Python version of GPCCA - *pyGPCCA* - 
+especially, if you are working with large transition matrices with more than a few
+thousand rows/columns. pyGPCCA is significantly more performant, if one uses the
+optional support for sorted partial Schur decompositions utilizing the SPLEPc library.
+
+*pyGPCCA* can be found here:
+https://github.com/msmdev/pyGPCCA
+
+Documentation is available here:
+https://pygpcca.readthedocs.io/en/latest/
 
 ------------------------------------------------------------------------------------------
 How to use GPCCA:
