@@ -41,7 +41,8 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
 %			            (and the Schurvector matrix) shall be sorted:              
 % 			            If b < 0 then -b blocks will be sorted,
 % 			            if b > 0 then  b or b+1 eigenvalues will be sorted, 
-%			            depending on the sizes of the blocks,
+%			            depending on the sizes of the blocks
+%                       (ALWAYS set b>=kmax+1 here),
 % 			            if b = 0 then the whole Schur form will be sorted.
 %			            WARNING: The number of sorted eigenvalues needs to 
 %			            be larger than the maximal number of clusters!
@@ -76,7 +77,7 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
 %       wk.solver       Solver for unconstrained optimization problem.
 %                       One of the following can be chosen:
 %                       'melder-mead',
-%                       'levenberg-marquardt',
+%                       'levenberg-marquardt' (not advised),
 %                       'gauss-newton'.
 %       wk.tolfun       Optimization termination tolerance on the function 
 %                       value, a positive scalar:
@@ -106,11 +107,13 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
 %                       first optimization loop as input for the optional 
 %                       final optimization.
 %       iopt.maxiter    Maximum number of optimization iterations:
-%                       -1 means off (internal maximum number of iterations
-%                       of the algorithm is used),
 %                       typically 2000-100000 for 'nelder-mead',
 %                       typically ~500 for 'levenberg-marquardt',
 %                       typically 100-1000 for 'gauss-newton'.
+%                       -1 means off (internal maximum number of iterations
+%                       of the algorithm is used).
+%                       -2 means to use 50*(k-1)^2 iterations (only in case
+%                       'nelder-mead').
 %       iopt.parallel   Selection of parallel execution of the optional 
 %                       optimization loop by choosing iopt.parallel=1,
 %                       else if iopt.parallel=0 the program will be  
@@ -118,7 +121,7 @@ function [ Pc, chi, A, wk, iopt ] = gpcca(P, sd, kmin, kmax, wk, iopt)
 %       iopt.solver     Solver for unconstrained optimization problem.
 %                       One of the following can be chosen:
 %                       'melder-mead',
-%                       'levenberg-marquardt',
+%                       'levenberg-marquardt' (not advised),
 %                       'gauss-newton'.
 %       iopt.tolfun     Optimization termination tolerance on the function 
 %                       value, a positive scalar:
