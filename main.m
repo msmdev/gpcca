@@ -62,13 +62,25 @@ wk.b = 0 ;                      % if b < 0 then -b blocks will be sorted,
 wk.init = 1 ;                   % if 1 use A=inv(EVS(index,:)) as starting
                                 % guess, 
                                 % if =0 read A from file.
-wk.solver = 'nelder-mead' ;     % solver for unconstrained optimization 
+wk.solver = 'gauss-newton' ;    % solver for unconstrained optimization 
                                 % problem, either 'nelder-mead',
-                                % 'levenberg-marquardt', 'gauss-newton'
-wk.maxiter = -1 ;
-wk.parallel = 0 ;
-wk.tolx = 1e-8 ;
-wk.tolfun = 1e-8 ;
+                                % 'levenberg-marquardt' (not advised), 'gauss-newton'.
+wk.maxiter = 10 ;               % Maximum number of optimization iterations:
+                                % typically 2000-100000 for 'nelder-mead', 
+                                % typically ~500 for 'levenberg-marquardt',
+                                % typically 100-1000 for 'gauss-newton'.
+                                % -1 means off (internal maximum number of iterations
+                                % of the algorithm is used).
+                                % -2 means to use 50*(k-1)^2 iterations (only in case
+                                % 'nelder-mead').
+wk.parallel = 0 ;               % Selection of parallel execution of the first 
+                                % optimization loop by choosing wk.parallel=1,
+                                % else if wk.parallel=0 the program will be executed 
+                                % serially (Standard mode).
+
+% Parameters for optional (!) final optimization loop:
+% Just set iopt=struct (empty structure), if you don't want a final
+% optimization loop.
 iopt.init = 2 ;                 % If =1 use A=inv(EVS(index,:)) as starting 
                                 % guess, 
                                 % if =0 read A from file with identifier 
@@ -77,9 +89,27 @@ iopt.init = 2 ;                 % If =1 use A=inv(EVS(index,:)) as starting
                                 % if =2 use the the optimized A matrices 
                                 % from the  first optimization loop as 
                                 % input for the final optimization.
-iopt.solver = 'gauss-newton' ;   % solver for optional final optimization
-iopt.maxiter = 10 ;
-iopt.parallel = 0 ;
+iopt.solver = 'nelder-mead' ;   % solver for optional final optimization
+iopt.maxiter = -1 ;             % Maximum number of optimization iterations:
+                                % typically 2000-100000 for 'nelder-mead', 
+                                % typically ~500 for 'levenberg-marquardt',
+                                % typically 100-1000 for 'gauss-newton'.
+                                % -1 means off (internal maximum number of iterations
+                                % of the algorithm is used).
+                                % -2 means to use 50*(k-1)^2 iterations (only in case
+                                % 'nelder-mead').
+iopt.parallel = 0 ;             % Selection of parallel execution of the optional 
+                                % optimization loop by choosing wk.parallel=1,
+                                % else if wk.parallel=0 the program will be executed 
+                                % serially (Standard mode).
+iopt.tolx = 1e-8 ;              % Optimization termination tolerance on x, a positive 
+                                % scalar:
+                                % typically 1e-4 for 'nelder-mead',
+                                % typically 1e-10 for 'levenberg-marquardt'.
+iopt.tolfun = 1e-8 ;            % Optimization termination tolerance on the function 
+                                % value, a positive scalar:
+                                % typically 1e-4 for 'nelder-mead',
+                                % typically 1e-8 for 'levenberg-marquardt'.
 
 % -------------------------------------------------------------------------
 
