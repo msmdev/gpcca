@@ -54,9 +54,9 @@ wk.id = 'butane' ;
 wk.schur = 1 ;                  % calculate Schurvectors (schur=1) 
                                 % or use existing from file (schur=0)
 wk.b = 0 ;                      % if b < 0 then -b blocks will be sorted,
-                                % if b > 0 then  b or b+1 eigenvalues will 
+                                % if b > 0 then  b (or b+1 eigenvalues will 
                                 % be sorted, depending on the sizes of 
-                                % the blocks,
+                                % the blocks) - ALWAYS set b>=kmax+1,
                                 % if b = 0 then the whole Schur form will
                                 % be sorted.
 wk.init = 1 ;                   % if 1 use A=inv(EVS(index,:)) as starting
