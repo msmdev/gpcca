@@ -39,6 +39,11 @@ Please consider using the further developed Python version of GPCCA - *pyGPCCA* 
 especially, if you are working with large transition matrices with more than a few
 thousand rows/columns. pyGPCCA is significantly more performant, if one uses the
 optional support for sorted partial Schur decompositions utilizing the SPLEPc library.
+Further, GPCCA is not designed to work with sparse matrices. If a sparse matrix is passed
+to GPCCA, it is simply densified and thus the RAM consumption may increase dramatically.
+On the contrary, pyGPCCA was designed to work equally well with dense and sparse matrices
+and makes use of sparse data structures internally whenever possible, if supplied with a
+sparse transition matrix.
 
 *pyGPCCA* can be found here:
 https://github.com/msmdev/pyGPCCA
