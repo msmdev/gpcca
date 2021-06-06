@@ -58,7 +58,7 @@ function [ badblocks, badblockrows ] = find_twoblocks( X, RR, fileid )
     save(name,'subdiagonal','-ascii','-double')
     badblocks = (abs(subdiagonal) > 1E-12) ;
     badblocks = double(badblocks) ;
-    name=strcat(fileid,'-badblocks-1-100.txt') ;
+    name=strcat(fileid,'-badblocks-1-',int2str(b),'.txt') ;
     save(name,'badblocks','-ascii','-double')
     badblockrows = find(badblocks) ;
     name=strcat(fileid,'-badblock-row-indices-1-',int2str(b),'.txt') ;
