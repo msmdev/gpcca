@@ -476,9 +476,10 @@ function test_kmin_vs_koptmin(testCase)
     koptmin = 2 ;
     koptmax = 3 ;
     oldfileid = 'test_initialize_A_testmatrix' ;
+    Switch = 1 ;
     minChi_switch = 1 ;
     name = 'testInput_minChiON.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch','oldfileid')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch','oldfileid')
     
     import matlab.unittest.constraints.IsEqualTo;
     import matlab.unittest.constraints.AbsoluteTolerance;
@@ -546,8 +547,9 @@ function test_kmax_vs_koptmax(testCase)
     koptmax = 4 ;
     oldfileid = 'test_initialize_A_testmatrix' ;
     minChi_switch = 1 ;
+    Switch = 1 ;
     name = 'testInput_minChiON.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch','oldfileid')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch','oldfileid')
     
     import matlab.unittest.constraints.IsEqualTo;
     import matlab.unittest.constraints.AbsoluteTolerance;
@@ -614,9 +616,10 @@ function test_IoptInitError(testCase)
     koptmin = 2 ;
     koptmax = 3 ;
     oldfileid = 'test_initialize_A_testmatrix' ;
+    Switch = 1 ;
     minChi_switch = 1 ;
     name = 'testInput_minChiON.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch','oldfileid')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch','oldfileid')
     
     import matlab.unittest.constraints.IsEqualTo;
     import matlab.unittest.constraints.AbsoluteTolerance;
@@ -683,9 +686,10 @@ function test_normalCase(testCase)
     koptmin = 3 ;
     koptmax = 3 ;
     oldfileid = 'test_initialize_A_testmatrix' ;
+    Switch = 1 ;
     minChi_switch = 1 ;
     name = 'testInput_minChiON.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch','oldfileid')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch','oldfileid')
     
     import matlab.unittest.constraints.IsEqualTo;
     import matlab.unittest.constraints.AbsoluteTolerance;
@@ -831,9 +835,10 @@ function test_normalCase_ioptInit2(testCase)
     koptmin = 3 ;
     koptmax = 3 ;
     oldfileid = 'test_initialize_A_testmatrix' ;
+    Switch = 1 ;
     minChi_switch = 1 ;
     name = 'testInput_minChiON.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch','oldfileid')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch','oldfileid')
     
     import matlab.unittest.constraints.IsEqualTo;
     import matlab.unittest.constraints.AbsoluteTolerance;
@@ -989,9 +994,10 @@ function test_parallelCase_first(testCase)
     koptmin = 3 ;
     koptmax = 3 ;
     oldfileid = 'test_initialize_A_testmatrix' ;
+    Switch = 1 ;
     minChi_switch = 1 ;
     name = 'testInput_minChiON.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch','oldfileid')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch','oldfileid')
     
     import matlab.unittest.constraints.IsEqualTo;
     import matlab.unittest.constraints.AbsoluteTolerance;
@@ -1110,9 +1116,10 @@ function test_parallelCase_first_and_final(testCase)
     kmax = 5 ;
     koptmin = 2 ;
     koptmax = 3 ;
+    Switch = 1 ;
     minChi_switch = 1 ;
     name = 'testInput_minChiON.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch')
     
     import matlab.unittest.constraints.IsEqualTo;
     import matlab.unittest.constraints.AbsoluteTolerance;
@@ -1272,9 +1279,10 @@ function test_parallelCase_first_and_final_ioptInit2(testCase)
     kmax = 5 ;
     koptmin = 2 ;
     koptmax = 3 ;
+    Switch = 1 ;
     minChi_switch = 1 ;
     name = 'testInput_minChiON.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch')
     
     import matlab.unittest.constraints.IsEqualTo;
     import matlab.unittest.constraints.AbsoluteTolerance;
@@ -1520,13 +1528,14 @@ function setupOnce(testCase)
     kmax = 5 ;
     koptmin = 3 ;
     koptmax = 3 ;
+    Switch = 1 ;
     minChi_switch = 0 ;
     oldfileid = 'test_initialize_A_testmatrix' ;
     name = 'testInput_minChiOFF.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch','oldfileid')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch','oldfileid')
     minChi_switch = 1 ;
     name = 'testInput_minChiON.mat' ;
-    save(name,'kmin','kmax','koptmin','koptmax','minChi_switch','oldfileid')
+    save(name,'kmin','kmax','koptmin','koptmax','Switch','minChi_switch','oldfileid')
     e1 = [0,1,0] ;
     e2 = [0,1,0] ;
     e3 = [0,1,0] ;
